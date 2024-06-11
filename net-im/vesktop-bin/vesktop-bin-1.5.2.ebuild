@@ -9,7 +9,7 @@ DESCRIPTION="Unofficial modified discord client with several improvements"
 
 HOMEPAGE="https://github.com/Vencord/Vesktop"
 
-SRC_URI="https://github.com/Vencord/Vesktop/releases/download/v1.5.2/${P}.tar.gz"
+SRC_URI="https://github.com/Vencord/Vesktop/releases/download/v${PV}/${MY_PN}-${PV}.tar.gz"
 
 S="${WORKDIR}/${MY_PN}-${PV}"
 
@@ -56,7 +56,7 @@ RDEPEND="
 	libnotify? ( x11-libs/libnotify )
 "
 src_install() {
-	insinto /opt/${MY_PNPN}
+	insinto /opt/${MY_PN}
 	doins -r *
 	fperms +x /opt/${MY_PN}/vesktop
 	dosym /opt/${MY_PN}/vesktop /usr/bin/vesktop
