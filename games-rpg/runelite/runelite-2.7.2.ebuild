@@ -33,8 +33,9 @@ src_install() {
 	ls
 	insinto /usr/share/java/${MY_PN}
 	doins RuneLite.jar
+	doins "${FILESDIR}/launcher.sh"
 	fperms +x /usr/share/java/${MY_PN}/RuneLite.jar
-	dosym /usr/share/java/${MY_PN}/RuneLite.jar /usr/bin/runelite
+	dosym /usr/share/java/${MY_PN}/launcher.sh /usr/bin/runelite
 	insinto /usr/share/icons
     doins runelite.png
 	insinto /usr/share/applications
