@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Runelite
+Comment=Osrs client with plugin support
+Exec=/usr/bin/runelite
+Icon=runelite
+Terminal=false
+Categories=Game
+Keywords=Osrs;Runescape;Runelite
