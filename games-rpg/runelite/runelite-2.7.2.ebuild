@@ -14,7 +14,7 @@ https://github.com/runelite/launcher/releases/download/${PV}/RuneLite.jar
 https://raw.githubusercontent.com/runelite/launcher/${PV}/appimage/runelite.png
 "
 
-S="${WORKDIR}"
+S="${DISTDIR}"
 
 LICENSE="GPL-3"
 
@@ -30,10 +30,13 @@ RDEPEND="
 virtual/jre
 "
 src_install() {
-	insinto /usr/share/java/${MY_PN}/
-	doins -r *
+	ls
+	insinto /usr/share/java/${MY_PN}
+	doins RuneLite.jar
 	fperms +x /usr/share/java/${MY_PN}/RuneLite.jar
 	dosym /usr/share/java/${MY_PN}/RuneLite.jar /usr/bin/runelite
+	insinto /usr/share/icons
+    doins runelite.png
 	insinto /usr/share/applications
     doins "${FILESDIR}/runelite.desktop"
 	}
