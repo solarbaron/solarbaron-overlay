@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Name=Runelite
-Comment=Osrs client with plugin support
-Exec=/usr/bin/runelite
-Icon=runelite
+Name=Bolt-launcher
+Comment=OSRS launcher with support for jagex accounts
+Exec=/usr/bin/bolt
+Icon=bolt
 Terminal=false
 Categories=Game
-Keywords=Osrs;Runescape;Runelite
+Keywords=osrs;Runescape;Runelite;bolt;bolt-launcher
