@@ -20,11 +20,9 @@ LICENSE="GPL-3"
 
 SLOT="0"
 
-
 KEYWORDS="~amd64 ~x86"
 
-IUSE="appindicator +seccomp libnotify"
-RESTRICT="bindist mirror strip test"
+RESTRICT=""
 
 RDEPEND="
 virtual/jre

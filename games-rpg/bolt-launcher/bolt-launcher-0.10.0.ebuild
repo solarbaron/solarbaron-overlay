@@ -19,15 +19,14 @@ https://github.com/randy408/libspng/archive/adc94393dbeddf9e027d1b2dfff7c1bab975
 
 S="${WORKDIR}"
 
-LICENSE="GPL-3"
+LICENSE="AGPL-3"
 
 SLOT="0"
 
 
 KEYWORDS="~amd64 ~x86"
 
-IUSE="appindicator +seccomp libnotify"
-RESTRICT="bindist mirror strip"
+RESTRICT=""
 
 BDEPEND="
 x11-libs/libX11

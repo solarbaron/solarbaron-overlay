@@ -10,7 +10,7 @@ EGIT_BRANCH="dev"
 SRC_URI=""
 
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS=""
 IUSE="clang debug"
 RESTRICT=""
 DEPEND="
