@@ -55,7 +55,7 @@ src_unpack() {
 }
 
 src_compile(){
-	cmake -S Bolt-${PV} -B build -G "Unix Makefiles" -D CMAKE_BUILD_TYPE=Release -D CEF_ROOT="${S}"/cef_binary_114.2.11+g87c8807+chromium-114.0.5735.134_linux64_minimal -D CMAKE_INSTALL_PREFIX="/opt/bolt-launcher" -D BOLT_BINDIR=usr/bin -D BOLT_LIBDIR=usr/lib -D BOLT_SHAREDIR=usr/share -D BOLT_META_NAME="${MY_PN}" -D BOLT_SKIP_LIBRARIES=1
+	cmake -S Bolt-${PV} -B build -G "Unix Makefiles" -D CMAKE_BUILD_TYPE=Release -D CEF_ROOT="${S}"/cef_binary_114.2.11+g87c8807+chromium-114.0.5735.134_linux64_minimal -D CMAKE_INSTALL_PREFIX="/" -D BOLT_BINDIR=usr/bin -D BOLT_LIBDIR=usr/lib -D BOLT_SHAREDIR=usr/share -D BOLT_META_NAME="${MY_PN}" -D BOLT_SKIP_LIBRARIES=1
 	cmake --build build
 }
 
