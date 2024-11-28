@@ -39,24 +39,24 @@ ${DEPEND}
 "
 
 src_prepare() {
-	eapply_user
+	default
 }
 
 src_install() {
-    local licdir="${ED}/usr/share/licenses/${PN}"
-    local progdir="${ED}/opt/sme"
-    local bindir="${ED}/usr/bin"
-    local appdir="${ED}/usr/share/applications"
-    local imgdir="${ED}/usr/share/pixmaps/${PN}"
-    local docdir="${ED}/usr/share/doc/${PN}"
+    local licdir="/usr/share/licenses/${PN}"
+    local progdir="/opt/sme"
+    local bindir="/usr/bin"
+    local appdir="/usr/share/applications"
+    local imgdir="/usr/share/pixmaps/${PN}"
+    local docdir="/usr/share/doc/${PN}"
 
     mkdir -p "${ED}${HOME}/.local/share/${PN}/config"
 
     #dodoc README.md
-    #insinto "${licdir}"
-    doins LICENSE
+    insinto "${licdir}"
+    doins ${S}/${PN}-${PV}/LICENSE
     insinto "${imgdir}"
-    doins steam-metadata-editor.png
+    doins ${S}/${PN}-${PV}/steam-metadata-editor.png
     insinto "${appdir}"
-    doins steam-metadata-editor.desktop
+    doins ${S}/${PN}-${PV}/steam-metadata-editor.desktop
 }
