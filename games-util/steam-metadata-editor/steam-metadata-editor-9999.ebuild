@@ -50,7 +50,7 @@ src_install() {
     local imgdir="/usr/share/pixmaps/${PN}"
     local docdir="/usr/share/doc/${PN}"
 
-    mkdir -p "${ED}${HOME}/.local/share/${PN}/config"
+    mkdir -p "/${HOME}/.local/share/${PN}/config"
 
     #dodoc README.md
     insinto "${licdir}"
@@ -61,6 +61,6 @@ src_install() {
     doins ${S}/${PN}-${PV}/steam-metadata-editor.desktop
 	insinto "${progdir}"
     doins ${S}/${PN}-${PV}/src/*
-	exeinto "${bindir}"
-    doexe ${S}/${PN}-${PV}/steammetadataeditor
+	#exeinto "${bindir}"
+    #doexe ${S}/${PN}-${PV}/steammetadataeditor
 }
