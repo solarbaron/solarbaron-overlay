@@ -47,6 +47,7 @@ RDEPEND=${DEPEND}
 S=${WORKDIR}/${PN}-${PV}
 
 src_configure() {
+	git submodule update --init --recursive
 	mkdir ${S}/bin
 	cd ${S}/bin
 	if use debug && use clang; then
