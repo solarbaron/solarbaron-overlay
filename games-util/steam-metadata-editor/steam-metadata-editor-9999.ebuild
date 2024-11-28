@@ -59,4 +59,8 @@ src_install() {
     doins ${S}/${PN}-${PV}/steam-metadata-editor.png
     insinto "${appdir}"
     doins ${S}/${PN}-${PV}/steam-metadata-editor.desktop
+	insinto "${progdir}"
+    doins "${S}/${PN}-${PV}/src/"
+	exeinto "${bindir}"
+    doexe steammetadataeditor
 }
