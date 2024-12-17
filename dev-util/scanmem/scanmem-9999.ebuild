@@ -4,7 +4,7 @@
 EAPI=8
 
 PYTHON_COMPAT=( python3_{10..13} )
-inherit autotools python-single-r1
+inherit autotools python-single-r1 git-r3
 
 DESCRIPTION="Locate and modify variables in executing processes"
 HOMEPAGE="https://github.com/scanmem/scanmem"
