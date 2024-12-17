@@ -8,8 +8,9 @@ inherit autotools python-single-r1 git-r3
 
 DESCRIPTION="Locate and modify variables in executing processes"
 HOMEPAGE="https://github.com/scanmem/scanmem"
-EGIT_SRC_URI="https://github.com/scanmem/scanmem.git"
+EGIT_REPO_URI="https://github.com/scanmem/scanmem.git"
 EGIT_BRANCH="main"
+SRC_URI=""
 
 LICENSE="GPL-3"
 SLOT="0"
