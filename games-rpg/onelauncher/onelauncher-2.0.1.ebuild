@@ -26,18 +26,20 @@ RESTRICT=""
 BDEPEND="
 dev-python/poetry
 dev-vcs/git
+dev-lang/python:3.11
 "
 RDEPEND="
 virtual/wine
 "
 
+PYTHON_TARGETS="python3_11"
 
-
-src_compile(){
+src_compile() {
+	cd ${S}/OneLauncher-${PV}
 	poetry run python -m build
 }
 
 src_install() {
-	insinto /opt/$MY_PN
+	insinto /opt/${MY_PN}
 
 }
