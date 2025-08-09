@@ -11,7 +11,7 @@ HOMEPAGE="https://github.com/jeffvli/feishin"
 
 SRC_URI="https://github.com/jeffvli/feishin/releases/download/v${PV}/Feishin-linux-x64.tar.xz"
 
-S="${WORKDIR}/Feishin-${PV}-linux-x64"
+S="${WORKDIR}/Feishin-linux-x64.tar.xz"
 
 LICENSE="GPL-3"
 
