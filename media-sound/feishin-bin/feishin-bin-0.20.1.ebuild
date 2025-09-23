@@ -9,7 +9,7 @@ DESCRIPTION="Navidrome compatible music player"
 
 HOMEPAGE="https://github.com/jeffvli/feishin"
 
-SRC_URI="https://github.com/jeffvli/feishin/releases/download/v${PV}/Feishin-linux-x64.tar.xz"
+SRC_URI="https://github.com/jeffvli/feishin/releases/download/v${PV}/Feishin-linux-x64.tar.xz -> ${P}.tar.xz"
 
 S="${WORKDIR}/Feishin-linux-x64"
 
