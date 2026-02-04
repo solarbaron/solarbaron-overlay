@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=LOTRO Launcher
+Comment=Launcher for The Lord of the Rings Online
+Exec=lotro-launcher
+Icon=lotro-launcher
+Terminal=false
+Type=Application
+Categories=Game;RolePlaying;
+Keywords=lotro;mmo;mmorpg;launcher;lord;rings;online;
+StartupNotify=true
+StartupWMClass=lotro-launcher
