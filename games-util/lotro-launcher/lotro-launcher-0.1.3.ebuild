@@ -24,7 +24,7 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}
 	dev-libs/spdlog
-	dev-libs/nlohmann-json
+	dev-libs/nlohmann_json
 "
 BDEPEND="
 	dev-build/cmake
