@@ -17,7 +17,7 @@ KEYWORDS="~amd64 ~x86"
 RDEPEND="
 	dev-libs/libcec
 	dev-libs/protobuf:=
-	dev-libs/p8-platform
+	dev-libs/libplatform
 	media-libs/libsdl2
 	media-video/mpv:=
 	dev-qt/qtbase:6[gui,widgets]
