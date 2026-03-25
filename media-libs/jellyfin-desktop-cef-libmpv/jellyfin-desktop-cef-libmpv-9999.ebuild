@@ -33,8 +33,6 @@ BDEPEND="
 
 src_configure() {
 	local emesonargs=(
-		--prefix=/usr
-		--sysconfdir=/etc
 		--wrap-mode=nodownload
 		-Dlibmpv=true
 		-Dcdda=disabled
@@ -54,16 +52,16 @@ src_configure() {
 
 src_install() {
 	# Install libmpv.so to /opt/jellyfin-desktop-cef/libmpv/
-	insinto /opt/jellyfin-desktop-cef/libmpv/lib
 	exeinto /opt/jellyfin-desktop-cef/libmpv/lib
-	doexe "${BUILD_DIR}/libmpv.so.2"
-	dosym libmpv.so.2 /opt/jellyfin-desktop-cef/libmpv/lib/libmpv.so
+
+	# Find the built libmpv shared library
+	local mpv_so=$(find "${BUILD_DIR}" -maxdepth 1 -name 'libmpv.so.*' ! -type l -print -quit)
+	[[ -z "${mpv_so}" ]] && die "Could not find libmpv.so.* in ${BUILD_DIR}"
+	local mpv_soname=$(basename "${mpv_so}")
+	doexe "${mpv_so}"
+	dosym "${mpv_soname}" /opt/jellyfin-desktop-cef/libmpv/lib/libmpv.so
 
 	# Install headers
 	insinto /opt/jellyfin-desktop-cef/libmpv/include/mpv
-	doins "${S}/include/mpv/client.h"
-	doins "${S}/include/mpv/render.h"
-	doins "${S}/include/mpv/render_gl.h"
-	doins "${S}/include/mpv/render_vk.h"
-	doins "${S}/include/mpv/stream_cb.h"
+	doins "${S}"/include/mpv/{client,render,render_gl,render_vk,stream_cb}.h
 }

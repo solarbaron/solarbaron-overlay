@@ -38,6 +38,10 @@ CMAKE_MAKEFILE_GENERATOR=ninja
 
 S="${WORKDIR}/cef_binary_${CEF_VERSION}_linux64_minimal"
 
+# Use in-source build subdir matching upstream PKGBUILD behavior.
+# CEF's cmake sets custom output directories that break out-of-source builds.
+BUILD_DIR="${S}/build"
+
 src_configure() {
 	# Strip fortify source flags that conflict with CEF build
 	filter-flags '-Wp,-D_FORTIFY_SOURCE=*'
@@ -54,8 +58,6 @@ src_compile() {
 }
 
 src_install() {
-	insinto /opt/jellyfin-desktop-cef/libcef
-
 	# Headers
 	insinto /opt/jellyfin-desktop-cef/libcef/include
 	doins -r include/*
@@ -64,10 +66,7 @@ src_install() {
 	insinto /opt/jellyfin-desktop-cef/libcef/lib
 	doins -r Release/*
 	doins -r Resources/*
-	# Find the built wrapper library (cmake may place it in various subdirs)
-	local wrapper_lib=$(find "${BUILD_DIR}" -name 'libcef_dll_wrapper.a' -print -quit)
-	[[ -z "${wrapper_lib}" ]] && die "Could not find libcef_dll_wrapper.a in build directory"
-	doins "${wrapper_lib}"
+	doins "${BUILD_DIR}/libcef_dll_wrapper/libcef_dll_wrapper.a"
 
 	# Fix permissions on shared libraries and chrome-sandbox
 	fperms 0755 /opt/jellyfin-desktop-cef/libcef/lib/libcef.so
