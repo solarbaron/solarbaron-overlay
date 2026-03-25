@@ -64,7 +64,10 @@ src_install() {
 	insinto /opt/jellyfin-desktop-cef/libcef/lib
 	doins -r Release/*
 	doins -r Resources/*
-	doins "${BUILD_DIR}/libcef_dll_wrapper/libcef_dll_wrapper.a"
+	# Find the built wrapper library (cmake may place it in various subdirs)
+	local wrapper_lib=$(find "${BUILD_DIR}" -name 'libcef_dll_wrapper.a' -print -quit)
+	[[ -z "${wrapper_lib}" ]] && die "Could not find libcef_dll_wrapper.a in build directory"
+	doins "${wrapper_lib}"
 
 	# Fix permissions on shared libraries and chrome-sandbox
 	fperms 0755 /opt/jellyfin-desktop-cef/libcef/lib/libcef.so
