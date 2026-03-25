@@ -3,7 +3,7 @@
 
 EAPI=8
 
-inherit cmake flag-o-matic
+inherit flag-o-matic
 
 DESCRIPTION="CEF SDK for jellyfin-desktop-cef"
 HOMEPAGE="https://bitbucket.org/chromiumembedded/cef"
@@ -31,30 +31,23 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}"
 BDEPEND="
+	dev-build/cmake
 	dev-build/ninja
 "
 
-CMAKE_MAKEFILE_GENERATOR=ninja
-
 S="${WORKDIR}/cef_binary_${CEF_VERSION}_linux64_minimal"
-
-# Use in-source build subdir matching upstream PKGBUILD behavior.
-# CEF's cmake sets custom output directories that break out-of-source builds.
-BUILD_DIR="${S}/build"
 
 src_configure() {
 	# Strip fortify source flags that conflict with CEF build
 	filter-flags '-Wp,-D_FORTIFY_SOURCE=*'
 
-	local mycmakeargs=(
-		-DCMAKE_BUILD_TYPE=Release
-	)
-
-	cmake_src_configure
+	cmake -B "${S}/build" -G Ninja \
+		-DCMAKE_BUILD_TYPE=Release \
+		"${S}" || die "cmake configure failed"
 }
 
 src_compile() {
-	cmake_src_compile libcef_dll_wrapper
+	cmake --build "${S}/build" --target libcef_dll_wrapper || die "cmake build failed"
 }
 
 src_install() {
@@ -66,7 +59,17 @@ src_install() {
 	insinto /opt/jellyfin-desktop-cef/libcef/lib
 	doins -r Release/*
 	doins -r Resources/*
-	doins "${BUILD_DIR}/libcef_dll_wrapper/libcef_dll_wrapper.a"
+
+	# Find the built wrapper library wherever cmake placed it
+	local wrapper_lib=$(find "${S}/build" -name 'libcef_dll_wrapper.a' -o -name 'liblibcef_dll_wrapper.a' | head -1)
+	if [[ -z "${wrapper_lib}" ]]; then
+		# Debug: show what .a files exist
+		einfo "Contents of ${S}/build:"
+		find "${S}/build" -name '*.a' -ls
+		die "Could not find libcef_dll_wrapper.a"
+	fi
+	einfo "Found wrapper library at: ${wrapper_lib}"
+	doins "${wrapper_lib}"
 
 	# Fix permissions on shared libraries and chrome-sandbox
 	fperms 0755 /opt/jellyfin-desktop-cef/libcef/lib/libcef.so
