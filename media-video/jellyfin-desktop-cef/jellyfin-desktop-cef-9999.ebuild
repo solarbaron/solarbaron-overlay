@@ -15,9 +15,9 @@ KEYWORDS=""
 
 RDEPEND="
 	media-libs/jellyfin-desktop-cef-libcef-bin
-	media-libs/jellyfin-desktop-cef-libmpv-git
+	media-libs/jellyfin-desktop-cef-libmpv
 	media-libs/libsdl3
-	sys-apps/systemd
+	virtual/libudev
 "
 DEPEND="${RDEPEND}
 	dev-util/vulkan-headers
